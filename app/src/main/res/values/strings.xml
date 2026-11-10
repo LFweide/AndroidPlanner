@@ -23,5 +23,10 @@
     <string name="task_title_error">Vul een titel in</string>
     <string name="delete_confirm_title">Weet je het zeker?</string>
 
+    <string name="home_empty">Niets gepland</string>
+    <string name="home_overdue">Verlopen</string>
+    <string name="home_next">Volgende</string>
+    <string name="home_upcoming">Aankomend</string>
+
     <string name="placeholder_coming_soon">Binnenkort beschikbaar</string>
 </resources>

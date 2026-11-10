@@ -4,13 +4,13 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Overdue section with red 'Verlopen' label shown first
-- [ ] 'Volgende' card plus next 10 under 'Aankomend'
-- [ ] 'Niets gepland' empty state
-- [ ] Landscape uses two columns
-- [ ] Ticking done removes the task; edits in Taken update Home immediately
-- [ ] Unit tests cover empty, cap of 10 and due-equals-now boundary
+- [x] Overdue section with red 'Verlopen' label shown first
+- [x] 'Volgende' card plus next 10 under 'Aankomend'
+- [x] 'Niets gepland' empty state
+- [x] Landscape uses two columns
+- [x] Ticking done removes the task; edits in Taken update Home immediately
+- [x] Unit tests cover empty, cap of 10 and due-equals-now boundary
 
 Parent spec: ../spec.md

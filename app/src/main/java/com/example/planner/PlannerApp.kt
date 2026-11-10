@@ -107,7 +107,9 @@ fun PlannerApp() {
                 startDestination = Destination.Home.route,
                 modifier = Modifier.weight(1f)
             ) {
-                composable(Destination.Home.route) { HomeScreen() }
+                composable(Destination.Home.route) {
+                    HomeScreen(onEditTask = { navController.navigate(taskFormRoute(it)) })
+                }
                 composable(Destination.Tasks.route) {
                     TasksScreen(
                         onAddTask = { navController.navigate(taskFormRoute(TasksViewModel.NEW_TASK_ID)) },
