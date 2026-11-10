@@ -1,4 +1,4 @@
-package com.example.android_planner
+package com.example.planner
 
 import org.junit.Test
 

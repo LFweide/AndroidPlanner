@@ -4,12 +4,12 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Project syncs with wrapper, version catalog and matching Kotlin/KSP versions
-- [ ] Manifest has INTERNET and POST_NOTIFICATIONS, no configChanges
-- [ ] Tabs and Instellingen reachable in portrait and landscape
-- [ ] No forbidden library in any Gradle file
-- [ ] Per-phase 'Please verify' list printed
+- [x] Project syncs with wrapper, version catalog and matching Kotlin/KSP versions
+- [x] Manifest has INTERNET and POST_NOTIFICATIONS, no configChanges
+- [x] Tabs and Instellingen reachable in portrait and landscape
+- [x] No forbidden library in any Gradle file
+- [x] Per-phase 'Please verify' list printed
 
 Parent spec: ../spec.md

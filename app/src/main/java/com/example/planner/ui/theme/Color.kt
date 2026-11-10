@@ -1,4 +1,4 @@
-package com.example.android_planner.ui.theme
+package com.example.planner.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
