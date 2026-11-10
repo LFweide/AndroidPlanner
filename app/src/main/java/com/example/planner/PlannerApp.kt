@@ -22,7 +22,9 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.navArgument
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -30,7 +32,9 @@ import com.example.planner.navigation.Destination
 import com.example.planner.ui.screens.HolidaysScreen
 import com.example.planner.ui.screens.HomeScreen
 import com.example.planner.ui.screens.SettingsScreen
+import com.example.planner.ui.screens.TaskFormScreen
 import com.example.planner.ui.screens.TasksScreen
+import com.example.planner.ui.tasks.TasksViewModel
 
 // Why: the app shell. It owns the NavController and picks bottom bar (portrait) or rail (landscape).
 @OptIn(ExperimentalMaterial3Api::class)
@@ -104,13 +108,34 @@ fun PlannerApp() {
                 modifier = Modifier.weight(1f)
             ) {
                 composable(Destination.Home.route) { HomeScreen() }
-                composable(Destination.Tasks.route) { TasksScreen() }
+                composable(Destination.Tasks.route) {
+                    TasksScreen(
+                        onAddTask = { navController.navigate(taskFormRoute(TasksViewModel.NEW_TASK_ID)) },
+                        onEditTask = { navController.navigate(taskFormRoute(it)) }
+                    )
+                }
                 composable(Destination.Holidays.route) { HolidaysScreen() }
                 composable(Destination.Settings.route) { SettingsScreen() }
+                composable(
+                    route = Destination.TaskForm.route,
+                    arguments = listOf(
+                        navArgument("taskId") {
+                            type = NavType.LongType
+                            defaultValue = TasksViewModel.NEW_TASK_ID
+                        }
+                    )
+                ) { entry ->
+                    TaskFormScreen(
+                        taskId = entry.arguments?.getLong("taskId") ?: TasksViewModel.NEW_TASK_ID,
+                        onDone = { navController.popBackStack() }
+                    )
+                }
             }
         }
     }
 }
+
+private fun taskFormRoute(taskId: Long) = "task_form?taskId=$taskId"
 
 // Why: standard tab behaviour: one copy of each tab on the back stack, and its state is restored.
 private fun NavHostController.navigateToTab(tab: Destination) {

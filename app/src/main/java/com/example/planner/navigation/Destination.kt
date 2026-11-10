@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -18,7 +19,9 @@ enum class Destination(
     Home("home", R.string.nav_home, Icons.Filled.Home),
     Tasks("tasks", R.string.nav_tasks, Icons.AutoMirrored.Filled.List),
     Holidays("holidays", R.string.nav_holidays, Icons.Filled.DateRange),
-    Settings("settings", R.string.settings_title, Icons.Filled.Settings);
+    Settings("settings", R.string.settings_title, Icons.Filled.Settings),
+    // The route holds the optional taskId argument; it must equal the NavHost route exactly.
+    TaskForm("task_form?taskId={taskId}", R.string.task_form_title, Icons.Filled.Edit);
 
     companion object {
         // The three destinations shown in the bottom bar / rail. Settings is opened from the top bar.

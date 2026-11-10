@@ -9,5 +9,19 @@
     <string name="action_back">Terug</string>
     <string name="action_open_settings">Instellingen openen</string>
 
+    <string name="action_save">Opslaan</string>
+    <string name="action_cancel">Annuleren</string>
+    <string name="action_delete">Verwijderen</string>
+    <string name="action_ok">OK</string>
+
+    <string name="task_form_title">Taak</string>
+    <string name="tasks_empty">Nog geen taken</string>
+    <string name="task_add">Taak toevoegen</string>
+    <string name="task_delete">Taak verwijderen</string>
+    <string name="task_title_label">Titel</string>
+    <string name="task_description_label">Omschrijving</string>
+    <string name="task_title_error">Vul een titel in</string>
+    <string name="delete_confirm_title">Weet je het zeker?</string>
+
     <string name="placeholder_coming_soon">Binnenkort beschikbaar</string>
 </resources>

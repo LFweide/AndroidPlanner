@@ -4,12 +4,12 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Tasks persist after the app is killed
-- [ ] Empty title shows an error, no crash
-- [ ] Delete asks 'Weet je het zeker?' and can be cancelled
-- [ ] Form keeps input on rotation and scrolls in landscape
-- [ ] DB work is off the main thread
+- [x] Tasks persist after the app is killed
+- [x] Empty title shows an error, no crash
+- [x] Delete asks 'Weet je het zeker?' and can be cancelled
+- [x] Form keeps input on rotation and scrolls in landscape
+- [x] DB work is off the main thread
 
 Parent spec: ../spec.md
