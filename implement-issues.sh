@@ -1,4 +1,4 @@
-#!/usr/bin/env implement-issues.sh
+#!/usr/bin/env bash
 # Runs `/implement <issue>` for the next N issues in .scratch/planner-app/issues.
 # Each issue gets its own fresh Claude session (one ticket per session).
 #
@@ -31,11 +31,14 @@ command -v claude >/dev/null || { echo "claude CLI not found in PATH" >&2; exit 
 
 touch "$DONE_FILE"
 
+# The ticket file is the source of truth: an issue is done only if it says "Status: done".
+is_done() { grep -qiE '^\*\*Status:\*\*[[:space:]]*done' "$1"; }
+
 # Issue files in natural order (01, 02, ... 10), skipping ones already implemented.
 mapfile -t ALL < <(find "$ISSUES_DIR" -maxdepth 1 -type f -not -name '.*' | sort -V)
 PENDING=()
 for f in "${ALL[@]}"; do
-  grep -qxF "$f" "$DONE_FILE" || PENDING+=("$f")
+  is_done "$f" || PENDING+=("$f")
 done
 
 if [[ ${#PENDING[@]} -eq 0 ]]; then
@@ -52,11 +55,12 @@ for (( i = 0; i < COUNT; i++ )); do
   echo "=== [$((i + 1))/$COUNT] /implement $issue ==="
 
   # shellcheck disable=SC2086  # CLAUDE_FLAGS is intentionally word-split
-  if claude -p "/implement $issue" $CLAUDE_FLAGS; then
-    echo "$issue" >> "$DONE_FILE"
+  # A session can exit 0 after stopping for a permission prompt, so also check the ticket itself.
+  if claude -p "/implement $issue" $CLAUDE_FLAGS && is_done "$issue"; then
+    grep -qxF "$issue" "$DONE_FILE" || echo "$issue" >> "$DONE_FILE"
     echo "--- done: $issue"
   else
-    echo "!!! /implement failed on $issue, stopping." >&2
+    echo "!!! $issue was not completed (error, or Status not set to done), stopping." >&2
     exit 1
   fi
 done
