@@ -1,5 +1,7 @@
 package com.example.planner
 
+// Why: template example test, kept as a sanity check that the instrumented test setup runs.
+
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 

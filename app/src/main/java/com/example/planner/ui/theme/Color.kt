@@ -1,5 +1,7 @@
 package com.example.planner.ui.theme
 
+// Why: the template's colour palette, kept as the Material3 default (no custom theming in scope).
+
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)

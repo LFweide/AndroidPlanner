@@ -1,5 +1,7 @@
 package com.example.planner
 
+// Why: template example test, kept as a sanity check that the unit test setup runs.
+
 import org.junit.Test
 
 import org.junit.Assert.*

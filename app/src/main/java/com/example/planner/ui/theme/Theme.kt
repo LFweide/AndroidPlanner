@@ -1,5 +1,7 @@
 package com.example.planner.ui.theme
 
+// Why: wraps the app in MaterialTheme (dynamic colour on Android 12+, fixed palette below that).
+
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

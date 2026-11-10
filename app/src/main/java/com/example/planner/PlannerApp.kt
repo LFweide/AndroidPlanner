@@ -38,14 +38,15 @@ import com.example.planner.ui.screens.TasksScreen
 fun PlannerApp() {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val current = Destination.fromRoute(backStackEntry?.destination?.route) ?: Destination.Home
-    val isTab = current in Destination.tabs
+    // The route is null for a moment before the first screen is composed; Home is the start screen.
+    val currentDestination = Destination.fromRoute(backStackEntry?.destination?.route) ?: Destination.Home
+    val isTab = currentDestination in Destination.tabs
     val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(current.labelRes)) },
+                title = { Text(stringResource(currentDestination.labelRes)) },
                 navigationIcon = {
                     if (!isTab) {
                         IconButton(onClick = { navController.popBackStack() }) {
@@ -73,7 +74,7 @@ fun PlannerApp() {
                 NavigationBar {
                     Destination.tabs.forEach { tab ->
                         NavigationBarItem(
-                            selected = tab == current,
+                            selected = tab == currentDestination,
                             onClick = { navController.navigateToTab(tab) },
                             icon = { Icon(tab.icon, contentDescription = null) },
                             label = { Text(stringResource(tab.labelRes)) }
@@ -88,7 +89,7 @@ fun PlannerApp() {
                 NavigationRail {
                     Destination.tabs.forEach { tab ->
                         NavigationRailItem(
-                            selected = tab == current,
+                            selected = tab == currentDestination,
                             onClick = { navController.navigateToTab(tab) },
                             icon = { Icon(tab.icon, contentDescription = null) },
                             label = { Text(stringResource(tab.labelRes)) }
@@ -96,7 +97,12 @@ fun PlannerApp() {
                     }
                 }
             }
-            NavHost(navController = navController, startDestination = Destination.Home.route) {
+            // weight(1f): the content takes all width left over after the rail.
+            NavHost(
+                navController = navController,
+                startDestination = Destination.Home.route,
+                modifier = Modifier.weight(1f)
+            ) {
                 composable(Destination.Home.route) { HomeScreen() }
                 composable(Destination.Tasks.route) { TasksScreen() }
                 composable(Destination.Holidays.route) { HolidaysScreen() }
