@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env implement-issues.sh
 # Runs `/implement <issue>` for the next N issues in .scratch/planner-app/issues.
 # Each issue gets its own fresh Claude session (one ticket per session).
 #
